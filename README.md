@@ -14,8 +14,10 @@ Inclines dataset: LINK
 
 ## Data processing
 
-A Visual3D pipeline template is included for each dataset. This pipeline includes the GRF processing steps (e.g. baseline noise removal, down-sampling to motion capture sampling frequency), segement modeling  and joint kinematics modeling and data export to .mat files. The pipeline template is modified to be participant-specific using a Matlab script that also runs each pipeline automatically.
+A Visual3D pipeline template is included for each dataset. This pipeline includes the GRF processing steps (e.g. baseline noise removal, down-sampling to motion capture sampling frequency), segment modeling and joint kinematics calculations and data export to .mat files. The pipeline template is modified to be participant-specific using a Matlab script that also runs each pipeline automatically.
 
-SCRIPTNAME uses the exported files to chop the GRF and kinematics variables into gait cycles using the highest point reached by the foot centre of mass, detect gold standard foot strike (vertical GRF > 50 N) and toe off (vertical GRF < 50 N) within each cycle and produce a one-hot encoded vector of labels (0 = non-contact, 1 = contact). The GRF and kinematics variables can be visualised in an interactive plot that allows for manual flagging of noisy/outlier cycles by clicking directly on the plotted signal. The data are stored in cycles and those cycles that have been flagged up are excluded.
+SCRIPTNAME uses the exported files to 1) chop the GRF and kinematics variables into gait cycles using the highest point reached by the foot centre of mass, 2) detect gold standard foot strike (vertical GRF > 50 N) and toe off (vertical GRF < 50 N) within each cycle and 3) produce a one-hot encoded vector of labels (0 = non-contact, 1 = contact). The GRF and kinematics variables can be visualised in an interactive plot that allows for manual flagging of noisy/outlier cycles by clicking directly on the plotted signal. The data are stored in cycles and those cycles that have been flagged up are excluded.
 
 ## FootNet development
+
+FootNet development can be replicated running this GOOGLECOLAB notebook.
