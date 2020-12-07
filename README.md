@@ -1,6 +1,6 @@
 # FootNet_Development
 
-Motion capture running analyses are oftentimes performed on convetional treadmills. The absence of force plates can be problematic for the detection for foot strike and toe off, which are critical for the comprhensive biomechanical analysis of running kinematics. FootNet is an algorithm for the detection of foot strike and toe off events on non-instrumented treadmills using segment and joint kinematics as input. The algorithm is based on a LSTM neural network architecture that has been trained, validated and tested using data from different labs, motion capture and treadmill systems, running speeds, running conditions and foot tracking models. Further details about FootNet development can be found in [REFTOSTUDY]. This repository includes all the software used for the study.
+Motion capture running analyses are oftentimes performed on convetional treadmills. The absence of force plates can be problematic for the detection for foot strike and toe off, which are critical for the comprehensive biomechanical analysis of running kinematics. FootNet is an algorithm for the detection of foot strike and toe off events on non-instrumented treadmills using segment and joint kinematics as input. The algorithm is based on an LSTM neural network architecture that has been trained, validated and tested using data from different labs, motion capture and treadmill systems, running speeds, running conditions and foot tracking models. Further details about FootNet development can be found in [REFTOSTUDY]. This repository includes all the software used for the study.
 
 ## Data
 
@@ -18,4 +18,4 @@ SCRIPTNAME uses the exported files to 1) chop the GRF and kinematics variables i
 
 ## FootNet development
 
-FootNet development can be replicated running this GOOGLECOLAB notebook.
+FootNet cross validation and testing can be replicated on Google Colab
