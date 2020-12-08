@@ -6,11 +6,11 @@ This repository contains all the software developed for the data processing, cro
 
 The pubication associated with this study can be found [here](link2pub).
 
-## FootNet model
+# FootNet model
 
 The model can be downloaded from [here](link). It has been developed using Tensorflow 2.3.0 on Python 3.6.9. Implementation of the model in Python is demonstated in Python_inference.py. The model can also be implemented in Matlab by importing the neural network's architecture and weights as demonstrated in the Matlab_inference.m script. 
 
-## Study replication
+# Study replication
 
 The following sections provide further details about the data and sofware developed and how to replicate  our results (to the extent allowed by the random allocation methods used for training and testing data and the stochastic nature of neural networks). The code provided has been originally developed for use in Visual3D (v6), Matlab (2018b) and Python (3.7). Nevertheless, all the files output by each script are also provided, so users can focus on a specific part of their interest or replicate the parts their software allows. The most important part of the study i.e. FootNet development can be replicated using Google Colab, which is freely accessible to anyone who owns a Gmail account.
 
