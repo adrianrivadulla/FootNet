@@ -1,20 +1,34 @@
-# FootNet_Development
+# Overview
 
-Motion capture running analyses are oftentimes performed on convetional treadmills. The absence of force plates can be problematic for the detection for foot strike and toe off, which are critical for the comprehensive biomechanical analysis of running kinematics. FootNet is an algorithm for the detection of foot strike and toe off events on non-instrumented treadmills using segment and joint kinematics as input. The algorithm is based on an LSTM neural network architecture that has been trained, validated and tested using data from different labs, motion capture and treadmill systems, running speeds, running conditions and foot tracking models. Further details about FootNet development can be found in [REFTOSTUDY]. This repository includes all the software used for the study.
+Motion capture running analyses are oftentimes performed on convetional (non-instrumented) treadmills. The absence of force plates can be problematic for the detection of foot strike and toe off, which are critical for the comprehensive biomechanical analysis of running kinematics. In this study, we developed FootNet an algorithm for the detection of foot strike and toe off events on non-instrumented treadmills using segment and joint kinematics as input. The algorithm is based on an LSTM neural network architecture that has been trained, validated and tested using five datasets collected in three different labs using different motion capture and treadmill systems. The datasets include athletes of different abilities and foot strikes running at a wide range of speeds, and under different gradient, fatigue, and shoe conditions. running conditions and foot tracking models.
+
+This repository contains all the software developed for the data processing, cross validation and testing of FootNet as well as links to download the datasets used.
+
+The pubication associated with this study can be found [here](link2pub).
+
+The data and software needed to replicate our results can be accessed [here](link2datasoftwareetc).
+
+The following sections provide further details about the data and sofware developed and how to use them.
 
 ## Data
 
-In this study we used five datasets including running kinematics and ground reaction forces collected on an instrumented treadmill. Two of those datasets are publicly available and will be used to demonstrate the processing steps followed for every dataset. The publicly available datasets can be downloaded from here:
+The datasets used in this study include ground reaction forces collected on an instrumented treadmill and three-dimensional marker trajectories collected using an optoelectronic motion capture system and have been gathered from previosly published running biomechanics research. The datasets have been named after the characteristics of the data collected as:
 
-Foot-strikes dataset: LINK
-
+FootStrikes dataset: LINK
 Inclines dataset: LINK
+Speed dataset: LINK
+Footwear: LINK
+Prolonged dataset: LINK
+
+Please note that FootStrikes and Inclines were already open access datasets retrieved from here and here, and credit should go to the researchers leading the original projects. We just reshare their work organised conveniently for our study.
 
 ## Data processing
 
-A Visual3D pipeline template is included for each dataset. This pipeline includes the GRF processing steps (e.g. baseline noise removal, down-sampling to motion capture sampling frequency), segment modeling and joint kinematics calculations and data export to .mat files. The pipeline template is modified to be participant-specific using a Matlab script that also runs each pipeline automatically.
+Biomechanical basic data processing steps including marker trajecotry filtering, rigid body segment model scaling, calculation of segment position and orientation, calculation of joint kinematics, ground reaction force baseline noise removal and filtering were performed in Visual3D. Visual3D pipelines for each individual to perform these steps are included and the way those individual pipelines were created based on pipeline templates can be replicated using NameOfScript in Matlab. 
 
-SCRIPTNAME uses the exported files to 1) chop the GRF and kinematics variables into gait cycles using the highest point reached by the foot centre of mass, 2) detect gold standard foot strike (vertical GRF > 50 N) and toe off (vertical GRF < 50 N) within each cycle and 3) produce a one-hot encoded vector of labels (0 = non-contact, 1 = contact). The GRF and kinematics variables can be visualised in an interactive plot that allows for manual flagging of noisy/outlier cycles by clicking directly on the plotted signal. The data are stored in cycles and those cycles that have been flagged up are excluded.
+Following data processing steps including segmentation of running trials in gait cycles using the highest position of the foot centre of mass, ground reaction force and kinematics data quality assessment, identification of the contact phase using the vertical ground reaction force within each cycle and subsequent identification of foot strike and toe off were performed in Matlab using NameOfScript.
+
+FootNet's architectue and development was completed in Python. Hence, the Python script NameOfScript was used to gather the output files produced in the previous data processing steps, calculate segment linear velocities and save the input features, target labels, trial names and vertical ground reaction force vectors in a more "Python-friendly" format for FootNet development.
 
 ## FootNet development
 
