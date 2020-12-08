@@ -8,7 +8,7 @@ The pubication associated with this study can be found [here](link2pub).
 
 # FootNet model
 
-The model can be downloaded from [here](link). It has been developed using Tensorflow 2.3.0 on Python 3.6.9. Implementation of the model in Python is demonstated in Python_inference.py. The model can also be implemented in Matlab by importing the neural network's architecture and weights as demonstrated in the Matlab_inference.m script. 
+The model can be downloaded from [here](https://drive.google.com/drive/folders/1EL-QiWbctmPvoMiyEah3Gdx_DOeAsmye?usp=sharing). It has been developed using Tensorflow 2.3.0 on Python 3.6.9. Implementation of the model in Python is demonstated in Python_inference.py. The model can also be implemented in Matlab by importing the neural network's architecture and weights as demonstrated in the Matlab_inference.m script. 
 
 # Study replication
 
