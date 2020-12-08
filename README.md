@@ -25,6 +25,13 @@ FootNet cross validation and testing can be replicated on Google Colab. Firstly,
       - OriginalDatasets. Folder containing the entire datasets (.npy) files as Python dictionaries.
       - DataFolds.npy File containing the training data grouped in 5 folds.
       - TestingSet.npy File containing the testing set.
-    - CrossValidation.
+    - CrossValidation
       - Models. Folder containing the five models developed during cross validation.
       - Results. Folder containing the summary performance metrics for each model on its corresponding validation set and Bland-Altman plots comparing foot strike, toe off and contact times as predicted by FootNet vs gold standard method.
+    - FinalTest
+      - FootNet_bestCandidate. Best set of parameters resulting from cross validation
+      - Summary performance metrics on testing set and Bland-Altman plots comparing foot strike, toe off and ocntact times as predicted by FootNet vs gold standard method.
+      - y_and_yhat.mat File containing testing predictions, target labels and metadata from testing stride cycles for posterior analyses in Matlab presented in the paper.
+    - TrainTest_Split.ipynb. This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
+    - CrossValidation.ipnyb. This notebook performs cross 5-fold cross validation.
+    - FinalTest.ipnyb. This notebook updates the best candidate model resulting from cross validation with the 5 folds as training set and performs the final test on the testing set.
