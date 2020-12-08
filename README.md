@@ -38,10 +38,12 @@ The data and software needed to replicate our results can be accessed [here](lin
       - Sensitivity_Analysis.m. Script to run the sensitivity analysis of hip, knee and ankle sagittal plane angles to error in the detection of foot strike and toe off.
       - TestResults_Analysis.m. Script to run Bland-Altman agreement analysis between FootNet and the gold standard method and correlation analysis between FootNet error and speed, foot angle at contact and ground gradient.
       - Dataset_Sorter.py. Script to calculate final input features for model development and to sort each datasets (individual .mat files for each trial) in a single "Python-friendly" .npy file containing a dictionary with the input features and target labels.
-      
+    - Figures. Folder containing all the figures in the paper and where the figures produced by the different scripts will be saved.
+    - TestResults.
+    
 ## Data
 
-The datasets used in this study include ground reaction forces collected on an instrumented treadmill and three-dimensional marker trajectories collected using an optoelectronic motion capture system and have been gathered from previosly published running biomechanics research. The datasets have been named after the characteristics of the data collected as:
+The datasets used in this study include ground reaction forces collected on an instrumented treadmill and three-dimensional marker trajectories collected using an optoelectronic motion capture system. These datasets have been gathered from previosly published running biomechanics studies and have been named as:
 
 FootStrikes dataset: LINK
 Inclines dataset: LINK
@@ -76,5 +78,5 @@ FootNet cross validation and testing can be replicated on Google Colab. Firstly,
       - Summary performance metrics on testing set and Bland-Altman plots comparing foot strike, toe off and ocntact times as predicted by FootNet vs gold standard method.
       - y_and_yhat.mat File containing testing predictions, target labels and metadata from testing stride cycles for posterior analyses in Matlab presented in the paper.
     - TrainTest_Split.ipynb. This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
-    - CrossValidation.ipnyb. This notebook performs cross 5-fold cross validation.
+    - CrossValidation.ipnyb. This notebook performs 5-fold cross validation.
     - FinalTest.ipnyb. This notebook updates the best candidate model resulting from cross validation with the 5 folds as training set and performs the final test on the testing set.
