@@ -8,7 +8,7 @@ The pubication associated with this study can be found [here](link2pub).
 
 The data and software needed to replicate our results can be accessed [here](link2datasoftwareetc).
 
-The following sections provide further details about the data and sofware developed and how to use them.
+The following sections provide further details about the data and sofware developed and how to use them. The code provided has been originally developed for use in Visual3D (version), Matlab (version) and Python (). Nevertheless, all the files output by each script are also provided, so users can focus on a specific part of their interest or replicate the parts their software allows. The most important part of the study i.e. FootNet development can be replicated using Google Colab, which is freely accessible to anyone who owns a Gmail account.
 
 ## Data
 
@@ -20,15 +20,15 @@ Speed dataset: LINK
 Footwear: LINK
 Prolonged dataset: LINK
 
-Please note that FootStrikes and Inclines were already open access datasets retrieved from here and here, and credit should go to the researchers leading the original projects. We just reshare their work organised conveniently for our study.
+Please note that FootStrikes and Inclines were already open access datasets retrieved from [here](link) and [here](link), and credit should go to the researchers leading the original projects. We just reshare their work organised conveniently for our study.
 
 ## Data processing
 
-Biomechanical basic data processing steps including marker trajecotry filtering, rigid body segment model scaling, calculation of segment position and orientation, calculation of joint kinematics, ground reaction force baseline noise removal and filtering were performed in Visual3D. Visual3D pipelines for each individual to perform these steps are included and the way those individual pipelines were created based on pipeline templates can be replicated using NameOfScript in Matlab. 
+Biomechanical basic data processing steps including marker trajecotry filtering, rigid body segment model scaling, calculation of segment position and orientation, calculation of joint kinematics, ground reaction force baseline noise removal and filtering were performed in Visual3D. Visual3D pipelines for each individual to perform these steps are included. These subject-specific pipelines were automatically created based on a template and executed in Visual3D through Matlab using NameOfScript in Matlab. 
 
 Following data processing steps including segmentation of running trials in gait cycles using the highest position of the foot centre of mass, ground reaction force and kinematics data quality assessment, identification of the contact phase using the vertical ground reaction force within each cycle and subsequent identification of foot strike and toe off were performed in Matlab using NameOfScript.
 
-FootNet's architectue and development was completed in Python. Hence, the Python script NameOfScript was used to gather the output files produced in the previous data processing steps, calculate segment linear velocities and save the input features, target labels, trial names and vertical ground reaction force vectors in a more "Python-friendly" format for FootNet development.
+FootNet's architectue and development was completed in Python. NameOfScript Python script was used to gather the output files produced in the previous data processing steps, calculate segment linear velocities and save the input features, target labels, trial names and vertical ground reaction force vectors in a more "Python-friendly" format for FootNet development.
 
 ## FootNet development
 
