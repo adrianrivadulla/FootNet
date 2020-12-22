@@ -8,7 +8,7 @@ The pubication associated with this study can be found [here](link2pub).
 
 # FootNet model
 
-The model can be downloaded from [here](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9). It has been developed using Tensorflow 2.3.0 on Python 3.6.9. Implementation of the model in Python is demonstated in FootNet_implementation.py.
+The model has been developed using Tensorflow 2.3.0 on Python 3.6.9 and can be downloaded from [here](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9). Clicking on the link will automatically start the dowload of a .zip folder containing the model as a SavedModel (Tensorflow saving format) directory (FootNetFinalModel), a data example file (Data_example.mat), an implementation example (FootNet_implementation.py) and a requirements.txt indicating the libraries and library versions needed to run the implementation example.
 
 # Study replication
 
