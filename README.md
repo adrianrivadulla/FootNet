@@ -14,7 +14,21 @@ The model has been developed using Tensorflow 2.3.0 on Python 3.6.9 and can be d
 
 The following sections provide further details about the data and sofware developed and how to replicate  our results (to the extent allowed by the random allocation methods used for training and testing data and the stochastic nature of neural networks). The code provided has been originally developed for use in Visual3D (v6), Matlab (2018b) and Python (3.7). Nevertheless, all the files output by each script are also provided, so users can focus on a specific part of their interest or replicate the parts their software allows. The most important part of the study i.e. FootNet development can be replicated using Google Colab, which is freely accessible to anyone who owns a Gmail account.
 
-The data and software needed to replicate our results can be accessed [here](link2datasoftwareetc). The project directory is organised as follows:
+
+    
+## Data
+
+The datasets used in this study include ground reaction forces collected on an instrumented treadmill and three-dimensional marker trajectories collected using an optoelectronic motion capture system. These datasets have been gathered from previosly published running biomechanics studies and have been named as:
+
+FootStrikes dataset: LINK
+Inclines dataset: LINK
+Speed dataset: LINK
+Footwear: LINK
+Prolonged dataset: LINK
+
+Please note that FootStrikes and Inclines were already open access datasets retrieved from [here](link) and [here](link), and credit should go to the researchers leading the original projects. We just reshare their work organised conveniently for our study.
+
+The raw data and software needed to replicate our results can be accessed [here](link2datasoftwareetc). The project directory is organised as follows:
 
   - StepDetectionStudy
     - Datasets
@@ -40,18 +54,6 @@ The data and software needed to replicate our results can be accessed [here](lin
       - Dataset_Sorter.py. Script to calculate final input features for model development and to sort each datasets (individual .mat files for each trial) in a single "Python-friendly" .npy file containing a dictionary with the input features and target labels.
     - Figures. Folder containing all the figures in the paper and where the figures produced by the different scripts will be saved.
     - TestResults.
-    
-## Data
-
-The datasets used in this study include ground reaction forces collected on an instrumented treadmill and three-dimensional marker trajectories collected using an optoelectronic motion capture system. These datasets have been gathered from previosly published running biomechanics studies and have been named as:
-
-FootStrikes dataset: LINK
-Inclines dataset: LINK
-Speed dataset: LINK
-Footwear: LINK
-Prolonged dataset: LINK
-
-Please note that FootStrikes and Inclines were already open access datasets retrieved from [here](link) and [here](link), and credit should go to the researchers leading the original projects. We just reshare their work organised conveniently for our study.
 
 ## Data processing
 
@@ -63,13 +65,16 @@ FootNet's architectue and development was completed in Python. NameOfScript Pyth
 
 ## FootNet development
 
-FootNet cross validation and testing can be replicated on Google Colab. Firstly, you need to download the data and notebooks from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) and add them to your Google drive. The root directory has the following structure:
+FootNet cross validation and testing can be replicated on Google Colab and *does not require the raw data and code introduced in the previous section*. The final output of the previous processing steps can be dowloaded straight away from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) alongside the notebooks to replicate the development of Footnet.
 
   - StepDetectionStudy
     - Data
-      - OriginalDatasets. Folder containing the entire datasets (.npy) files as Python dictionaries.
+      - OriginalDatasets. Folder containing the entire datasets (*_dataset.npy files).
       - DataFolds.npy File containing the training data grouped in 5 folds.
       - TestingSet.npy File containing the testing set.
+      
+      Data are organised as Python dictionaries containing the kinematic input features ['X'], label vectors ['Y'], metadata about the trials ['meta'] and vertical GRF ['GRFv']. Each of those dictionary keys contains a list with nested lists with the structure participant > trial > stride. For instance, dataset['X'][0][0][0] accesses the kinematic input features characterising the first stride recorded in the first trial of the first participant in dataset.
+      
     - CrossValidation
       - Models. Folder containing the five models developed during cross validation.
       - Results. Folder containing the summary performance metrics for each model on its corresponding validation set and Bland-Altman plots comparing foot strike, toe off and contact times as predicted by FootNet vs gold standard method.
