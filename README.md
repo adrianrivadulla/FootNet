@@ -8,7 +8,7 @@ The pubication associated with this study can be found [here](link2pub).
 
 # FootNet model
 
-The model can be downloaded from [here](https://drive.google.com/drive/folders/1EL-QiWbctmPvoMiyEah3Gdx_DOeAsmye?usp=sharing). It has been developed using Tensorflow 2.3.0 on Python 3.6.9. Implementation of the model in Python is demonstated in FootNet_implementation.py.
+The model can be downloaded from [here](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9). It has been developed using Tensorflow 2.3.0 on Python 3.6.9. Implementation of the model in Python is demonstated in FootNet_implementation.py.
 
 # Study replication
 
