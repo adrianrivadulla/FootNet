@@ -79,9 +79,10 @@ FootNet cross validation and testing can be replicated on Google Colab and *does
       - Models. Folder containing the five models developed during cross validation.
       - Results. Folder containing the summary performance metrics for each model on its corresponding validation set and Bland-Altman plots comparing foot strike, toe off and contact times as predicted by FootNet vs gold standard method.
     - FinalTest
-      - FootNet_bestCandidate. Best set of parameters resulting from cross validation
+      - FootNet_best_candidate. Best set of parameters resulting from cross validation.
       - Summary performance metrics on testing set and Bland-Altman plots comparing foot strike, toe off and ocntact times as predicted by FootNet vs gold standard method.
       - y_and_yhat.mat File containing testing predictions, target labels and metadata from testing stride cycles for posterior analyses in Matlab presented in the paper.
+    - FinalModel. Folder containing the final updated model resulting from FinalTest as a SavedModel directory (Tensorflow model format) and as .h5.
     - TrainTest_Split.ipynb. This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
-    - CrossValidation.ipnyb. This notebook performs 5-fold cross validation.
+    - CrossValidation.ipnyb. This notebook performs 5-fold cross validation and slected the best set of weights as best candidate for the final test.
     - FinalTest.ipnyb. This notebook updates the best candidate model resulting from cross validation with the 5 folds as training set and performs the final test on the testing set.
