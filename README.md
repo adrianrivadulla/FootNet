@@ -65,7 +65,10 @@ FootNet's architectue and development was completed in Python. NameOfScript Pyth
 
 ## FootNet development
 
-FootNet cross validation and testing can be replicated on Google Colab and *does not require the raw data and code introduced in the previous section*. The final output of the previous processing steps can be dowloaded straight away from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) alongside the notebooks to replicate the development of Footnet.
+FootNet cross-validation and testing can be replicated on Google Colab and *does not require the raw data and code introduced in the previous section*. The final output of the previous processing steps can be dowloaded straight away from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) and the Google Colab notebooks to replicate the development of Footnet can be found in this repository.
+
+Before you begin, you need to download the project folder containing the data (should start automatically when clicking in the link provided in the previous paragraph)
+and upload it to your Google Drive. The project directory StepDetectionStudy is organised as follows:
 
   - StepDetectionStudy
     - Data
@@ -83,6 +86,9 @@ FootNet cross validation and testing can be replicated on Google Colab and *does
       - Summary performance metrics on testing set and Bland-Altman plots comparing foot strike, toe off and ocntact times as predicted by FootNet vs gold standard method.
       - y_and_yhat.mat File containing testing predictions, target labels and metadata from testing stride cycles for posterior analyses in Matlab presented in the paper.
     - FinalModel. Folder containing the final updated model resulting from FinalTest as a SavedModel directory (Tensorflow model format) and as .h5.
-    - TrainTest_Split.ipynb. This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
-    - CrossValidation.ipnyb. This notebook performs 5-fold cross validation and slected the best set of weights as best candidate for the final test.
-    - FinalTest.ipnyb. This notebook updates the best candidate model resulting from cross validation with the 5 folds as training set and performs the final test on the testing set.
+
+Once the project folder is in your Google Drive, you can use the Google Colab notebooks provided in this repository to replicate the data splitting, cross-validation and model testing. You can preview the notebook on Github however I would recommend opening the notebook in Google Colab to have full control over it. This option should appear at the top of your screen when you click on a given Google Colab notebook. For CrossValidation.ipynb and FinalTest.ipynb, make sure you are running on GPU by clicking on Runtime > Change Runtime type and selecting GPU.
+
+- TrainTest_Split.ipynb. This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
+    - CrossValidation.ipnyb. This notebook performs 5-fold cross-validation and slected the best set of weights as best candidate for the final test.
+    - FinalTest.ipnyb. This notebook updates the best candidate model resulting from cross-validation with the 5 folds as training set and performs the final test on the testing set.
