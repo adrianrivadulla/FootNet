@@ -40,7 +40,7 @@ and upload it to your Google Drive. The project directory StepDetectionStudy is 
 
 Once the project folder is in your Google Drive, you can use the Google Colab notebooks provided in this repository to replicate the data splitting, cross-validation and model testing (Figure 1). You can preview the notebook on Github however I would recommend opening the notebook in Google Colab to have full control over it. This option should appear at the top of your screen when you click on a given Google Colab notebook. For CrossValidation.ipynb and FinalTest.ipynb, make sure you are running on GPU by clicking on Runtime > Change Runtime type and selecting GPU.
 
-
+![alt text](https://github.com/adrianrivadulla/FootNet_Development/blob/main/data_flow.png?raw=true)
 
 - [TrainTest_Split.ipynb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/TrainTest_Split.ipynb) This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
     - CrossValidation.ipnyb. This notebook performs 5-fold cross-validation and selects the best set of weights as best candidate for the final test.
