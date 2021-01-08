@@ -4,7 +4,7 @@ Motion capture running analyses are oftentimes performed on convetional (non-ins
 
 This repository contains all the software developed for the data processing, cross-validation and testing of FootNet as well as links to download the datasets used.
 
-The pubication associated with this study can be found [here](link2pub).
+The pubication associated with this study can be found [here](link2pub) (not available yet).
 
 # FootNet model
 
@@ -12,11 +12,11 @@ The model has been developed using Tensorflow 2.3.0 on Python 3.6.9 and can be d
 
 # Study replication
 
-Complete replication of the study requires access to Visual3D (v6), Matlab (2018b) and Python (3.7). Nevertheless, all the files output by each script are also provided, so users can focus on a specific part of their interest or replicate the parts their software allows. Raw motion capture data and code for full data processing from raw marker trajectories and ground reaction forces to kinematic input features and corresponding desired labels can be found in the DataProcessing directory within this repository.
+Complete replication of the study requires access to Visual3D (v6), Matlab (2018b) and Python (3.7). Nevertheless, all the files output by each script are also provided, so users can focus on a specific part of their interest or replicate the parts their software allows. Raw motion capture data and code for full data processing from raw marker trajectories and ground reaction forces to kinematic input features and corresponding desired labels can be found in the DataProcessing directory (PENDING ON WHETHER WE UPLOAD ALL THE DATASETS, IGNORE FOR NOW) within this repository.
 
 ## FootNet development
 
-FootNet cross-validation and testing can be replicated on Google Colab and *does not require the raw data and code mentioned in the previous section*. The final output of the previous processing steps can be dowloaded straight away from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) []and the Google Colab notebooks to replicate the development of Footnet can be found in this repository.
+FootNet cross-validation and testing can be replicated on Google Colab and *does not require the raw data and code mentioned in the previous section*. The final output of the previous processing steps can be dowloaded straight away from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) (THIS IS A TEMPORARY SOLUTION WHILE WE DON'T DECIDE WHETHER WE GO FIGSHARE OR UNI REPO. FOR NOW, CLICK ON THE LINK, THEN ON THE TOP TAB CALLED StepDetectionStudy YOU'LL SEE A DROPDOWN ARROW, CLICK ON IT AND DOWNLOAD. THAT WILL DOWNLOAD EVERYTHING AS A ZIP FOLDER. ONCE THAT'S FINISHED, OPEN THE FOLDER IN YOUR COMPUTER AND REUPLOAD THE FOLDER StepDetectionStudy CONTAINING EVERYTHING TO THE MY DRIVE FOLDER IN YOUR GOOGLE DRIVE) and the Google Colab notebooks to replicate the development of Footnet can be found in this repository.
 
 Before you begin, you need to download the project folder containing the data (should start automatically when clicking in the link provided in the previous paragraph)
 and upload it to your Google Drive. The project directory StepDetectionStudy is organised as follows:
