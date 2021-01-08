@@ -16,7 +16,7 @@ Complete replication of the study requires access to Visual3D (v6), Matlab (2018
 
 ## FootNet development
 
-FootNet cross-validation and testing can be replicated on Google Colab and *does not require the raw data and code mentioned in the previous section*. The final output of the previous processing steps can be dowloaded straight away from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) and the Google Colab notebooks to replicate the development of Footnet can be found in this repository.
+FootNet cross-validation and testing can be replicated on Google Colab and *does not require the raw data and code mentioned in the previous section*. The final output of the previous processing steps can be dowloaded straight away from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) []and the Google Colab notebooks to replicate the development of Footnet can be found in this repository.
 
 Before you begin, you need to download the project folder containing the data (should start automatically when clicking in the link provided in the previous paragraph)
 and upload it to your Google Drive. The project directory StepDetectionStudy is organised as follows:
@@ -44,4 +44,4 @@ Once the project folder is in your Google Drive, you can use the Google Colab no
 
    - [TrainTest_Split.ipynb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/TrainTest_Split.ipynb) This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
    - [CrossValidation.ipnyb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/StepDetection_CV.ipynb) This notebook performs 5-fold cross-validation and selects the best set of weights as best candidate for the final test.
-   - FinalTest.ipnyb. This notebook updates the best candidate model resulting from cross-validation with the 5 folds as training set and performs the final test on the testing set.
+   - [FinalTest.ipnyb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/StepDetection_FinalTest.ipynb) This notebook updates the best candidate model resulting from cross-validation with the 5 folds as training set and performs the final test on the testing set.
