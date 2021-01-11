@@ -3,7 +3,7 @@
 This script demonstrates how to use FootNet to detect foot strike and toe off.
 An example data file (Data_example.mat) containing segment and joint 
 kinematics chopped in gait cycles is provided to implement it. The kinematic 
-variable are contained in matlab cells, where each cell is a gait cycle and 
+variables are contained in Matlab cells, where each cell is a gait cycle and 
 contains a matrix of shape datapoints x xyzcoord, where xyzcoord are 
 either med-lat, ant-post, vert for linear kinematics or flex/ext, abd/add and
 int/ext rotation for joint kinematics.
