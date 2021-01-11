@@ -42,6 +42,6 @@ Once the project folder is in your Google Drive, you can use the Google Colab no
 
 ![alt text](https://github.com/adrianrivadulla/FootNet_Development/blob/main/data_flow.png?raw=true)
 
-   - [TrainTest_Split.ipynb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/TrainTest_Split.ipynb) This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
-   - [CrossValidation.ipnyb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/StepDetection_CV.ipynb) This notebook performs 5-fold cross-validation and selects the best set of weights as best candidate for the final test.
-   - [FinalTest.ipnyb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/StepDetection_FinalTest.ipynb) This notebook updates the best candidate model resulting from cross-validation with the 5 folds as training set and performs the final test on the testing set.
+   - [TrainTest_Split.ipynb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/Development_notebooks/TrainTest_Split.ipynb) This notebook demonstrates how the dataset splitting was performed, including training and testing (70/30) and further folding of training dataset in 5 folds.
+   - [CrossValidation.ipnyb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/Development_notebooks/StepDetection_CV.ipynb) This notebook performs 5-fold cross-validation and selects the best set of weights as best candidate for the final test.
+   - [FinalTest.ipnyb.](https://github.com/adrianrivadulla/FootNet_Development/blob/main/Development_notebooks/StepDetection_FinalTest.ipynb) This notebook updates the best candidate model resulting from cross-validation with the 5 folds as training set and performs the final test on the testing set.
