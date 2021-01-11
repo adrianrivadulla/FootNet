@@ -8,7 +8,7 @@ The pubication associated with this study can be found [here](link2pub) (not ava
 
 # FootNet model and implementation
 
-The model can be downloaded from [here](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9) (Clicking on the link will automatically start the dowload of a .zip folder containing the model as a SavedModel (Tensorflow saving format) directory (FootNetFinalModel)), and files for an implementation example can be found in [FootNet_Inference](https://github.com/adrianrivadulla/FootNet_Development/tree/main/FootNet_Inference)
+The model can be downloaded from [here](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9) (Clicking on the link will automatically start the dowload of a .zip folder containing the model as a SavedModel (Tensorflow saving format) directory (FootNetFinalModel)), and files for an implementation example can be found in [FootNet_Inference](https://github.com/adrianrivadulla/FootNet_Development/tree/main/FootNet_Inference).
 
 # Study replication
 
