@@ -1,0 +1,1 @@
+This folder contains a Python script that shows how to implement FootNet. Before you start, FootNet was developed using Python 3.6.9 so make sure you can access that version or above for this example. There is a requirements.txt file indicating the dependencies you will need to run the example. My advise would be to create a virtual environment with those versions.
