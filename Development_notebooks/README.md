@@ -5,7 +5,8 @@ Before you begin, you need to download the project folder containing the data (s
     - OriginalDatasets. Folder containing the entire datasets (*_dataset.npy files).
     - DataFolds.npy File containing the training data grouped in 5 folds.
     - TestingSet.npy File containing the testing set.
-    Data are organised as Python dictionaries containing the kinematic input features ['X'], label vectors ['Y'], metadata about the trials ['meta'] and vertical GRF ['GRFv']. Each of those dictionary keys contains a list with nested lists with the structure participant > trial > stride. For instance, dataset['X'][0][0][0] accesses the kinematic input features characterising the first stride recorded in the first trial of the first participant in dataset.
+
+Data are organised as Python dictionaries containing the kinematic input features ['X'], label vectors ['Y'], metadata about the trials ['meta'] and vertical GRF ['GRFv']. Each of those dictionary keys contains a list with nested lists with the structure participant > trial > stride. For instance, dataset['X'][0][0][0] accesses the kinematic input features characterising the first stride recorded in the first trial of the first participant in dataset.
 
   - CrossValidation
 
