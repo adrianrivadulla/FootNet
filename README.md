@@ -6,7 +6,7 @@ The pubication associated with this study can be found [here](link2pub) (not ava
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Pre-requisites
 
