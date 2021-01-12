@@ -22,30 +22,30 @@ These instructions will get you a copy of the project up and running on your loc
    ```
 
 - Set up the environment using one of the following methods:
-    
-    Using [Anaconda:](https://www.anaconda.com/distribution/)
+
+    - Using [Anaconda:](https://www.anaconda.com/distribution/)
 
      ```Shell
      conda env create -f environment.yml
      ```
 
-    Using [pip:](https://pip.pypa.io/en/stable/installing/)
+    - Using [pip:](https://pip.pypa.io/en/stable/installing/)
 
-        ```Shell
-        pip install venv
-        python -m virtualenv env
-        source venv/bin/activate
-        pip install -r requirements.txt
-        ```
+    ```Shell
+    pip install venv
+    python -m virtualenv env
+    source venv/bin/activate
+    pip install -r requirements.txt
+    ```
 
-    - Download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9)
+- Download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9)
 
-        ```Shell
-        mkdir models
-        cd models
-        command to download model
-        cd ..
-        ```
+    ```Shell
+    mkdir models
+    cd models
+    command to download model
+    cd ..
+    ```
 
 ### Usage
 
@@ -57,11 +57,9 @@ To run use:
     python Footnet_inference.py
 ```
 
-
 ## License
 
 tbc
-
 
 # Citation
 If you use FootNet or this code base in your work, please cite
@@ -77,4 +75,4 @@ If you use FootNet or this code base in your work, please cite
 
 
 # Contact
-For questions about our paper or code, please contact [Adrian R](mailto: arr43@bath.ac.uk).
+For questions about our paper or code, please contact [Adrian R](mailto:arr43@bath.ac.uk).
