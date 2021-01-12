@@ -33,9 +33,7 @@ Created on Wed Dec  9 13:51:54 2020
 
 @author: arr43
 """
-#%% Pre-settings
 
-# Make imports
 
 import os
 from scipy.io import loadmat
@@ -43,9 +41,40 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
-# Helper fuctions
+def pre_processor(data, sampling_freq=200):
 
-def predictContactEvents(input_cycles, model_obj):
+    # Unpack data from .mat file
+    tib_dist = np.hstack((data['rtib_dist'], data['ltib_dist']))
+    ank_angle = np.hstack((data['rank'], data['lank']))
+    foot_com = np.hstack((data['rfoot_com'], data['lfoot_com']))
+
+    # Generate input variables for FootNet
+    trial_cycles = []
+
+    for stri in range(tib_dist.shape[1]):
+        
+        # Distal tibia anteroposterior velocity
+        disttib_ap_vel = np.gradient(tib_dist[0, stri][:,1],(1/sampling_freq), axis=0) 
+        
+        # Ankle dorsi/plantarflex
+        ank_dpflex = ank_angle[0, stri][:,0]                                              
+        
+        # Foot com vertical velocity
+        foot_v_vel = np.gradient(foot_com[0, stri][:,2],(1/sampling_freq), axis=0) 
+        
+        # Foot anteroposterior velocity
+        foot_ap_vel = np.gradient(foot_com[0, stri][:,1],(1/sampling_freq), axis=0) 
+
+        # Stack the input features for cycle number stri
+        input_features = np.vstack((disttib_ap_vel, ank_dpflex, foot_v_vel, foot_ap_vel)).T
+        
+        # Reshape input features to (stride x data x features) array and stack them
+        t_points = max(np.shape(tib_dist[0, stri]))
+        trial_cycles.append(np.reshape(input_features, (1, t_points ,4)))
+
+        return trial_cycles
+
+def predict_events(input_cycles, model_obj):
     """
     This function uses model_obj to predict the contact phase given 
     input_cycles. It then finds the first and last points of the predicted 
@@ -95,101 +124,31 @@ def predictContactEvents(input_cycles, model_obj):
 
     return foot_strike, toe_off, contact
 
-#%% Load data
+def data_writer(foot_strike_hat, toe_off_hat, contact_hat, file):
+    pass
 
-my_own_path = __file__
-rootdir = os.path.dirname(my_own_path)
-modeldir = rootdir + '/FootNetFinalModel'
-data = loadmat(rootdir + '/Data_example.mat')                                                   
+def main():
+    # Data paths
+    data_path = "./data"
+    model_path = "./models/FootNetFinalModel"
 
-#%% Get input data
+    # Load model
+    FootNet = tf.keras.models.load_model(modeldir)
 
-tib_dist = np.hstack((data['rtib_dist'], data['ltib_dist']))
-ank_angle = np.hstack((data['rank'], data['lank']))
-foot_com = np.hstack((data['rfoot_com'], data['lfoot_com']))
+    # Generate processing list
+    proc_list = [f for f in os.listdir(data_path) if f.endswith('.mat')]
 
-#%% Calculate and sort input features for FootNet
+    # Iterate over each file in processing list
+    for file in proc_list:
+        # Load file
+        full_path = os.path.join(data, file)
+        data = loadmat(full_path)
 
-trial_cycles = []
-sampling_freq = 200
+        # Pre-process data
+        trial_cycles = pre_processor(data)
 
-for stri in range(tib_dist.shape[1]):
-    
-    # Distal tibia anteroposterior velocity
-    disttib_ap_vel = np.gradient(tib_dist[0, stri][:,1],(1/sampling_freq), axis=0) 
-    
-    # Ankle dorsi/plantarflex
-    ank_dpflex = ank_angle[0, stri][:,0]                                              
-    
-    # Foot com vertical velocity
-    foot_v_vel = np.gradient(foot_com[0, stri][:,2],(1/sampling_freq), axis=0) 
-    
-    # Foot anteroposterior velocity
-    foot_ap_vel = np.gradient(foot_com[0, stri][:,1],(1/sampling_freq), axis=0) 
+        # predict ground contact events
+        foot_strike_hat, toe_off_hat, contact_hat = predict_events(trial_cycles, FootNet)
 
-    # Stack the input features for cycle number stri
-    input_features = np.vstack((disttib_ap_vel, ank_dpflex, foot_v_vel, foot_ap_vel)).T
-    
-    # Reshape input features to (stride x data x features) array and stack them
-    t_points = max(np.shape(tib_dist[0, stri]))
-    trial_cycles.append(np.reshape(input_features, (1, t_points ,4)))
-
-#%% Predict contact phases using FootNet
-
-# instantiate model
-FootNet = tf.keras.models.load_model(modeldir)
-
-foot_strike_hat, toe_off_hat, contact_hat = predictContactEvents(trial_cycles, FootNet)
-
-#%% Compare to gold standard
-
-Y_labels = np.hstack((data['rlabels'], data['llabels']))
-foot_strike_true = []
-toe_off_true = []
-
-for stri in range(Y_labels.shape[1]):
-   
-    onset = np.where(Y_labels[0,stri][0,:] >= 0.5)[0][0]
-    offset = np.where(Y_labels[0,stri][0,onset:] < 0.5)[0][0] - 1 + onset
-    
-    foot_strike_true.append(onset)
-    toe_off_true.append(offset)
-
-foot_strike_error = np.asarray(foot_strike_true) - np.asarray(foot_strike_hat)
-toe_off_error = np.asarray(toe_off_true) - np.asarray(toe_off_hat)
-
-
-plt.figure()
-
-# Subplot 1. histogram of foot strike error
-    
-plt.subplot(3,1,1)
-labels, counts = np.unique(foot_strike_error, return_counts=True)
-plt.bar(labels, counts, align='center')
-plt.xticks(np.linspace(-5,5,11))
-plt.title('Foot strike error')
-plt.ylabel('Count')
-plt.xlabel('Error (frames)')
-
-# Subplot 2. histogram of toe off error
-    
-plt.subplot(3,1,2)
-labels, counts = np.unique(toe_off_error, return_counts=True)
-plt.bar(labels, counts, align='center')
-plt.xticks(np.linspace(-5,5,11))
-plt.title('Toe off error')
-plt.ylabel('Count')
-plt.xlabel('Error (frames)')
-    
-# Subplot 3. Random case for visualisation
-sel_cycle = int(np.random.randint(low=0, high=len(trial_cycles), size=1))
-
-plt.subplot(3,1,3)
-plt.plot(Y_labels[0,sel_cycle][:].T,'g')
-plt.plot(contact_hat[sel_cycle][0,:,0],'b')
-plt.legend('Ground truth', 'Predicted')
-plt.title('Ground truth vs predicted')
-plt.ylabel('Label')
-plt.xlabel('Timepoint')
-
-plt.tight_layout()
+        # Write results to disk
+        data_writer(foot_strike_hat, toe_off_hat, contact_hat, file)
