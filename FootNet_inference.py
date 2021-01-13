@@ -152,3 +152,6 @@ def main():
 
         # Write results to disk
         data_writer(foot_strike_hat, toe_off_hat, contact_hat, file)
+
+if __name__ == "__main__":
+    main()
