@@ -1,46 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-This script demonstrates how to use FootNet to detect foot strike and toe off.
-An example data file (Data_example.mat) containing segment and joint 
-kinematics chopped in gait cycles is provided to implement it. The kinematic 
-variables are contained in Matlab cells, where each cell is a gait cycle and 
-contains a matrix of shape datapoints x xyzcoord, where xyzcoord are 
-either med-lat, ant-post, vert for linear kinematics or flex/ext, abd/add and
-int/ext rotation for joint kinematics.
-
-The input features needed for FootNet are:
-    
-    distal tibia anteroposterior velocity
-    ankle dorsi-plantar flexion
-    foot vertical velocity
-    foot anteroposterior velocity
-    
-The example file provides positions so linear velocities must be calculated.
-
-For each cycle, these features must be organised in a ndarray to be fed into
-FootNet with shape cycle x datapoints x features. 
-
-FootNet is contained in the helper function predictContactEvents. This function
-takes the raw input features and performs the standardisation internally for 
-convenience, predicts the contact phase within the cycle and then outputs foot 
-strike, toe off and the entire predicted label vector.
-
-The example file also contains vertical ground reaction forces and the target
-label vector so you can compare your results against the gold standard for this
-particular file.
-
-Created on Wed Dec  9 13:51:54 2020
-
-@author: arr43
-
-FootNet_inference.py
-
 Process lower limb kinematc data in the required format (see repo for details) 
-and predcit foot-strike and toe-off events. 
+and predict foot-strike and toe-off events. 
 
 --datapath flag - Optional. Path to directory .mat files. This should either be
                     a path to the directory or the path to a single file. Defaults
                     to repo file structure.
+
+--samplingfreq flag - Optional (but required). Set to 0 by default so it crashes 
+                        and users make sure they input it.
 
 --model flag - Optional. Path to directory containing the FootNet model file. 
                 Defaults to repo file structure.
@@ -49,26 +17,51 @@ and predcit foot-strike and toe-off events.
                 Defaults to repo file structure.
 
 Usage:
-python3 FootNet_inference.py --datapath /path/to/data/file.mat --model path/to/modelfile --output path/to/save/location
+python3 FootNet_inference.py --datapath /path/to/data/file.mat --samplingfreq float --model path/to/modelfile --output path/to/save/location
 For help on arguments run: 
 python3 FootNet_inference.py --help
 """
 
+#%% Imports
 
 import os
-from scipy.io import loadmat
+import scipy.io
 import numpy as np
-import matplotlib.pyplot as plt
 import tensorflow as tf
 import argparse
 
-def pre_processor(data, sampling_freq=200):
+#%% Helper functions
 
+def pre_processor(data, sampling_freq):
+    """
+    This function pre-processes the input features needed to implement FootNet.
+    It takes data, an object resulting from loading a matfile using loadmat and 
+    extracts the ant-post distal tibia displacement, ankle dorsi-plantar flex angle, 
+    and foot com ant-post and vertical displacememnt. Linear velocities are computed by
+    calculating the numerical gradient of displacement using 1/sampling_freq as dt
+    for the linear variables and then ant-post distal tibia displacement, ankle dorsi-
+    plantar flex angle, foot vertical vel and foot ant-post vel are stacked as a 
+    1 x timepoints x 4 array. These arrays are returned in a list trial_cycles and 
+    a side reference sideref is also returned to keep track of left and right strides.
+    """
     # Unpack data from .mat file
-    tib_dist = np.hstack((data['rtib_dist'], data['ltib_dist']))
-    ank_angle = np.hstack((data['rank'], data['lank']))
-    foot_com = np.hstack((data['rfoot_com'], data['lfoot_com']))
-
+    if 'rtib_dist' in data.keys() and 'ltib_dist' not in data.keys():
+        tib_dist = data['rtib_dist']
+        ank_angle = data['rank']
+        foot_com = data['rfoot_com']
+        sideref = ['r'] * tib_dist.size
+    elif 'ltib_dist' in data.keys() and 'rtib_dist' not in data.keys():
+        tib_dist = data['ltib_dist']
+        ank_angle = data['lank']
+        foot_com = data['lfoot_com']
+        sideref = ['l'] * tib_dist.size
+    elif 'ltib_dist' in data.keys() and 'rtib_dist' in data.keys():
+        tib_dist = np.hstack((data['rtib_dist'], data['ltib_dist']))
+        ank_angle = np.hstack((data['rank'], data['lank']))
+        foot_com = np.hstack((data['rfoot_com'], data['lfoot_com']))
+        sideref = ['r'] * data['rtib_dist'].size
+        sideref += ['l'] * data['ltib_dist'].size
+    
     # Generate input variables for FootNet
     trial_cycles = []
 
@@ -93,7 +86,7 @@ def pre_processor(data, sampling_freq=200):
         t_points = max(np.shape(tib_dist[0, stri]))
         trial_cycles.append(np.reshape(input_features, (1, t_points ,4)))
 
-        return trial_cycles
+    return trial_cycles, sideref
 
 def predict_events(input_cycles, model_obj):
     """
@@ -112,7 +105,7 @@ def predict_events(input_cycles, model_obj):
             
     foot_strike. first timepoint predicted as contact
     toe_off. last timepoint predicted as contact
-    contact_phase. entire predicted label
+    contact_phase. entire predicted label vector
     """
     
     # Get standardisation parameters to standardise input data
@@ -145,16 +138,39 @@ def predict_events(input_cycles, model_obj):
 
     return foot_strike, toe_off, contact
 
-def data_writer(foot_strike_hat, toe_off_hat, contact_hat, file):
-    pass
+def data_writer(foot_strike_hat, toe_off_hat, contact_hat, sideref, inputfilename):
+    """
+    Writes out foot_strike_hat, toe_off_hat, contact_hat and sideref as a .mat
+    file with inputfilename without extension as filename, adding _contact_events
+    """
+    # Create outputfilename
+    outputfilename = os.path.splitext(inputfilename)[0]
+    outputfilename += '_contact_events.mat'    
+
+    # Reshape contact_hat and store them in a dict
+    predictions = {}
+    for stride in range(len(contact_hat)):
+        predictions[sideref[stride]+str(stride)] = np.reshape(contact_hat[stride],(max(np.shape(contact_hat[stride])),1))
+    
+    # Write dict containing the desired output
+    outputdic = {}
+    outputdic['predictions'] = predictions
+    outputdic['fs'] = foot_strike_hat
+    outputdic['to'] = toe_off_hat
+    outputdic['sideref'] = sideref
+
+    # Save it as .mat file
+    scipy.io.savemat(outputfilename, outputdic)
 
 def main():
 
     # set up argument parser
     ap = argparse.ArgumentParser()
-    ap.add_argument("-p,", "--datapath", required=True, type=str,
+    ap.add_argument("-p,", "--datapath", type=str,
                     default="./data",
                     help="path to kinematic data directory")
+    ap.add_argument("-sf", "--samplingfreq", required=True, type=float,
+                    default=0, help="motion capture sampling frquency")
     ap.add_argument("-m,", "--model", type=str,
                     default="./models/FootNetFinalModel",
                     help="path to tf model")
@@ -173,20 +189,24 @@ def main():
     else:
         # Generate processing list
         proc_list = [os.path.join(args['datapath'], f) for f in os.listdir(args['datapath']) if f.endswith('.mat')]
+        # Ignore contact events files that already exist in the directory
+        proc_list = [matfile for matfile in proc_list if '_contact_events.mat' not in matfile]
 
     # Iterate over each file in processing list
     for file in proc_list:
         # Load file
-        data = loadmat(file)
+        data = scipy.io.loadmat(file)
 
         # Pre-process data
-        trial_cycles = pre_processor(data)
+        trial_cycles, side_ref = pre_processor(data, args['samplingfreq'])
 
         # predict ground contact events
         foot_strike_hat, toe_off_hat, contact_hat = predict_events(trial_cycles, FootNet)
 
         # Write results to disk
-        data_writer(foot_strike_hat, toe_off_hat, contact_hat, file)
+        data_writer(foot_strike_hat, toe_off_hat, contact_hat, side_ref, file)
+
+#%% Call main
 
 if __name__ == "__main__":
     main()
