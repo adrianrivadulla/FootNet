@@ -10,7 +10,7 @@ These instructions will get a copy of the project up and running on your local m
 
 ### Pre-requisites
 
-- Python 3.6
+- Python 3.7
 
 ### Installing
 
@@ -38,7 +38,7 @@ These instructions will get a copy of the project up and running on your local m
     pip install -r requirements.txt
     ```
 
-- Download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9)
+- Download [model:](https://drive.google.com/uc?export=download&id=1pw37mEnt1xdn6EQvulYimjdGGxqu0C1u)
 
     ```Shell
     mkdir models
