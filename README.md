@@ -10,7 +10,7 @@ These instructions will get a copy of the project up and running on your local m
 
 ### Pre-requisites
 
-- Python 3.6
+- Python 3.7
 
 ### Installing
 
