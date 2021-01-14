@@ -32,6 +32,26 @@ particular file.
 Created on Wed Dec  9 13:51:54 2020
 
 @author: arr43
+
+FootNet_inference.py
+
+Process lower limb kinematc data in the required format (see repo for details) 
+and predcit foot-strike and toe-off events. 
+
+--datapath flag - Optional. Path to directory .mat files. This should either be
+                    a path to the directory or the path to a single file. Defaults
+                    to repo file structure.
+
+--model flag - Optional. Path to directory containing the FootNet model file. 
+                Defaults to repo file structure.
+
+--output flag - Optional. Path to directory where results will be saved. 
+                Defaults to repo file structure.
+
+Usage:
+python3 FootNet_inference.py --datapath /path/to/data/file.mat --model path/to/modelfile --output path/to/save/location
+For help on arguments run: 
+python3 FootNet_inference.py --help
 """
 
 
@@ -40,6 +60,7 @@ from scipy.io import loadmat
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
+import argparse
 
 def pre_processor(data, sampling_freq=200):
 
@@ -128,21 +149,35 @@ def data_writer(foot_strike_hat, toe_off_hat, contact_hat, file):
     pass
 
 def main():
-    # Data paths
-    data_path = "./data"
-    model_path = "./models/FootNetFinalModel"
+
+    # set up argument parser
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-p,", "--datapath", required=True, type=str,
+                    default="./data",
+                    help="path to kinematic data directory")
+    ap.add_argument("-m,", "--model", type=str,
+                    default="./models/FootNetFinalModel",
+                    help="path to tf model")
+    ap.add_argument("-o", "--output", type=str,
+                    default="./output/",
+                    help="path to output directory")
+    args = vars(ap.parse_args())
 
     # Load model
-    FootNet = tf.keras.models.load_model(modeldir)
+    FootNet = tf.keras.models.load_model(args['model'])
 
-    # Generate processing list
-    proc_list = [f for f in os.listdir(data_path) if f.endswith('.mat')]
+    # Check if datapath is single file or directory.
+    if args['datapath'].endswith(".mat"):
+        # Generate processing list
+        proc_list = [args['datapath']]
+    else:
+        # Generate processing list
+        proc_list = [os.path.join(args['datapath'], f) for f in os.listdir(args['datapath']) if f.endswith('.mat')]
 
     # Iterate over each file in processing list
     for file in proc_list:
         # Load file
-        full_path = os.path.join(data, file)
-        data = loadmat(full_path)
+        data = loadmat(file)
 
         # Pre-process data
         trial_cycles = pre_processor(data)

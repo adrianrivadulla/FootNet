@@ -1,8 +1,8 @@
 # FootNet
 
-An LSTM model for predciting foot-strike and toe-off events during treadmill running using lower limb kinematic data.
+An LSTM model for predicting foot-strike and toe-off events during treadmill running using lower limb kinematic data.
 
-The pubication associated with this study can be found [here](link2pub) (not available yet).
+The publication associated with this study can be found [here](link2pub) (not available yet).
 
 ## Getting Started
 
@@ -49,7 +49,7 @@ These instructions will get a copy of the project up and running on your local m
 
 ### Usage
 
-Ensure that the model is downloaded into ```FootNet/model/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved to ```FootNet/ouput/```.
+Ensure that the model is downloaded into ```FootNet/models/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved to ```FootNet/output/```.
 
 To run use:
 
@@ -68,7 +68,7 @@ If you use FootNet or this code base in your work, please cite
 @inproceedings{FootNet...,
   author    = {Adrian R. et al.},
   title     = {},
-  booktitle = {,
+  booktitle = {},
   year      = {},
 }
 ```
