@@ -13,11 +13,8 @@ and predict foot-strike and toe-off events.
 --model flag - Optional. Path to directory containing the FootNet model file. 
                 Defaults to repo file structure.
 
---output flag - Optional. Path to directory where results will be saved. 
-                Defaults to repo file structure.
-
 Usage:
-python3 FootNet_inference.py --datapath /path/to/data/file.mat --samplingfreq float --model path/to/modelfile --output path/to/save/location
+python3 FootNet_inference.py --datapath /path/to/data/file.mat --samplingfreq float --model path/to/modelfile
 For help on arguments run: 
 python3 FootNet_inference.py --help
 """
@@ -174,9 +171,6 @@ def main():
     ap.add_argument("-m,", "--model", type=str,
                     default="./models/FootNetFinalModel",
                     help="path to tf model")
-    ap.add_argument("-o", "--output", type=str,
-                    default="./output/",
-                    help="path to output directory")
     args = vars(ap.parse_args())
 
     # Load model
