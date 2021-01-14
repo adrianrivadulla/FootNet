@@ -57,7 +57,7 @@ To run use:
     python FootNet_inference.py --samplingfreq 200
 ```
 
-FootNet_inference takes two optional inputs: the directory where data can be found or a path to a specific file and the model directort. These are sets by default to ./data/ and ./models/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in the real world.
+FootNet_inference takes two optional inputs: the directory where data can be found or a path to a specific file and the model directory. These are set by default to ./data/ and ./models/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in the real world.
 
 ## License
 
