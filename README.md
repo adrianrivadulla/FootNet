@@ -60,7 +60,7 @@ To run use:
 ## License
 
 
-Copyright (c) <2020> <Adrian R Rivadulla>
+Copyright (c) 2020 Adrian R Rivadulla
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
