@@ -38,7 +38,7 @@ These instructions will get a copy of the project up and running on your local m
     pip install -r requirements.txt
     ```
 
-- Download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9)
+- Download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9) (this only works manually by clicking on the link for now)
 
     ```Shell
     mkdir models
@@ -49,13 +49,15 @@ These instructions will get a copy of the project up and running on your local m
 
 ### Usage
 
-Ensure that the model is downloaded into ```FootNet/models/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved to ```FootNet/output/```.
+Ensure that the model is downloaded into ```FootNet/models/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved to the same folder with the same file name and the extension _contact_events.mat.
 
 To run use:
 
 ```Shell
-    python Footnet_inference.py
+    python FootNet_inference.py --samplingfreq 200
 ```
+
+FootNet_inference takes two optional inputs: the directory where data can be found or a path to a specific file and the model directort. These are sets by default to ./data/ and ./models/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in the real world.
 
 ## License
 
