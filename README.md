@@ -83,7 +83,9 @@ If you use FootNet or this code base in your work, please cite
   year      = {},
 }
 ```
+# FootNet development replication
 
+Cross validation and model testing of FootNet can be replicated on Google Colab. More details on these processes, how to download the data and run the notebooks can be found in the [notebooks folder] NEED A RELATIVE LINK THAT I CAN'T CREATE.
 
 # Contact
 For questions about our paper or code, please contact [Adrian R](mailto:arr43@bath.ac.uk).
