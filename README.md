@@ -20,6 +20,17 @@ These instructions will get a copy of the project up and running on your local m
    git clone https://github.com/adrianrivadulla/FootNet.git
    cd FootNet
    ```
+-  Create models and output directories and download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9) (this only works manually by clicking on the link for now)
+
+    ```Shell
+    mkdir models
+    mkdir output
+    cd models
+    command to download model
+    cd ..
+    ```
+
+This same process can be replicated manually by downloading and unzipping this repository, creating the "models" and "output" folders in FootNet and downloading the model into the models folder.
 
 - Set up the environment using one of the following methods:
 
@@ -38,33 +49,27 @@ These instructions will get a copy of the project up and running on your local m
     pip install -r requirements.txt
     ```
 
-
-- Download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9) (this only works manually by clicking on the link for now)
-
-
-
-    ```Shell
-    mkdir output
-    mkdir models
-    cd models
-    command to download model
-    cd ..
-    ```
-
 ### Usage
 
 Ensure that the model is downloaded into ```FootNet/models/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved by default to the same folder with the same file name and the extension _contact_events.mat.
 
-To run use:
+To run, navigate to the FootNet directory and use:
 
 ```Shell
-    python FootNet_inference.py --samplingfreq 200
+    python FootNet_inference.py --samplingfreq 200 --output path/to/outputdirectory
 ```
 
-FootNet_inference takes two optional inputs: the directory where data can be found or a path to a specific file and the model directory. These are set by default to ./data/ and ./models/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in the real world.
+FootNet_inference takes the sampling frequency to calculate linear velocities as required input and three optional inputs: the directory where data can be found or a path to a specific file, the model directory and the output directory where files should be saved. These are set by default to ./data/, ./models/ and ./data/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in your own data.
 
 ## License
 
+Copyright (c) 2021 Adrian R Rivadulla
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with this program (see gpl.txt and lgpl.txt). If not, see <https://www.gnu.org/licenses/>.
 
 
 # Citation
