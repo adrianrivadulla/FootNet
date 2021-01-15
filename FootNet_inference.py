@@ -166,8 +166,8 @@ def main():
     ap.add_argument("-p,", "--datapath", type=str,
                     default="./data",
                     help="path to kinematic data directory")
-    ap.add_argument("-sf", "--samplingfreq", required=True, type=float,
-                    default=0, help="motion capture sampling frquency")
+    ap.add_argument("-sf", "--samplingfreq", required=False, type=int,
+                    default=200, help="motion capture sampling frquency")
     ap.add_argument("-m,", "--model", type=str,
                     default="./models/FootNetFinalModel",
                     help="path to tf model")
