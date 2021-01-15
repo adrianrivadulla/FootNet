@@ -44,6 +44,7 @@ These instructions will get a copy of the project up and running on your local m
 
 
     ```Shell
+    mkdir output
     mkdir models
     cd models
     command to download model
@@ -52,7 +53,7 @@ These instructions will get a copy of the project up and running on your local m
 
 ### Usage
 
-Ensure that the model is downloaded into ```FootNet/models/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved to the same folder with the same file name and the extension _contact_events.mat.
+Ensure that the model is downloaded into ```FootNet/models/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved by default to the same folder with the same file name and the extension _contact_events.mat.
 
 To run use:
 

@@ -1,22 +1,61 @@
 # -*- coding: utf-8 -*-
 """
-Process lower limb kinematc data in the required format (see repo for details) 
-and predict foot-strike and toe-off events. 
+Process lower limb kinematic data and predict foot-strike and toe-off events. 
+The input data must be contained as Matlab cells (1 x n) where n is the number 
+of gait cycles and contains a matrix of shape datapoints x xyzcoord, where 
+xyzcoord are either med-lat, ant-post, vert for linear kinematics or flex/ext,
+abd/add and int/ext rotation for joint kinematics. Variables must be named 
+following the convention: rtib_dist, ltib_dist, rank, lank, rfoot_com, lfoot_com.
+The script is able to deal with features from just one side (right or left) 
+or both.
+
+The input features needed for FootNet are:
+    
+    distal tibia anteroposterior velocity
+    ankle dorsi-plantar flexion
+    foot vertical velocity
+    foot anteroposterior velocity
+    
+But linear velocities are calculated internally so provide distal tibia and foot
+com displacments.
+
+For each cycle, these features must be organised in a ndarray to be fed into
+FootNet with shape cycle x datapoints x features.
+
+FootNet is contained in the helper function predictContactEvents. This function
+takes the raw input features and performs the standardisation internally for 
+convenience, predicts the contact phase within the cycle and then outputs foot 
+strike, toe off and the entire predicted label vector.
+is the number os strides in the file. 
+
+INPUT
+
+--samplingfreq flag - Required. Set to 0 by default so it crashes 
+                        and users make sure they input it.
+
 
 --datapath flag - Optional. Path to directory .mat files. This should either be
                     a path to the directory or the path to a single file. Defaults
                     to repo file structure.
 
---samplingfreq flag - Optional (but required). Set to 0 by default so it crashes 
-                        and users make sure they input it.
-
 --model flag - Optional. Path to directory containing the FootNet model file. 
                 Defaults to repo file structure.
 
+--output flag - Optional. Path to directory where results will be saved. 
+                Defaults to input data directory.
+
+OUTPUT
+
+-- foot-strike, toe-off indices and full prediction time-series are saved in a .mat
+file with the same name as the input file in the output directory.
+
 Usage:
-python3 FootNet_inference.py --datapath /path/to/data/file.mat --samplingfreq float --model path/to/modelfile
+python3 FootNet_inference.py --datapath /path/to/data/file.mat --samplingfreq float --model path/to/modelfile --output path/to/save/location
 For help on arguments run: 
 python3 FootNet_inference.py --help
+
+Authors: Adrian R Rivadulla and Laurie Needham
+
 """
 
 #%% Imports
@@ -135,15 +174,24 @@ def predict_events(input_cycles, model_obj):
 
     return foot_strike, toe_off, contact
 
-def data_writer(foot_strike_hat, toe_off_hat, contact_hat, sideref, inputfilename):
+def data_writer(foot_strike_hat, toe_off_hat, contact_hat, sideref, inputfilename, outputdir):
     """
     Writes out foot_strike_hat, toe_off_hat, contact_hat and sideref as a .mat
     file with inputfilename without extension as filename, adding _contact_events
     """
-    # Create outputfilename
-    outputfilename = os.path.splitext(inputfilename)[0]
-    outputfilename += '_contact_events.mat'    
-
+    # Check outputdir provided
+    if os.path.isdir(outputdir):
+        # write full path to file in outputdir
+        outputfilename = os.path.basename(inputfilename)
+        outputfilename = os.path.splitext(outputfilename)[0]
+        outputfilename += '_contact_events.mat'
+        outputfilename = os.path.join(outputdir, outputfilename) 
+    
+    elif outputdir == 'write_me':
+        # write full path to inputfiledir
+        outputfilename = os.path.splitext(inputfilename)[0]
+        outputfilename += '_contact_events.mat'    
+        
     # Reshape contact_hat and store them in a dict
     predictions = {}
     for stride in range(len(contact_hat)):
@@ -171,6 +219,9 @@ def main():
     ap.add_argument("-m,", "--model", type=str,
                     default="./models/FootNetFinalModel",
                     help="path to tf model")
+    ap.add_argument("-o", "--output", type=str,
+                    default="write_me",
+                    help="path to output directory")
     args = vars(ap.parse_args())
 
     # Load model
@@ -185,10 +236,14 @@ def main():
         proc_list = [os.path.join(args['datapath'], f) for f in os.listdir(args['datapath']) if f.endswith('.mat')]
         # Ignore contact events files that already exist in the directory
         proc_list = [matfile for matfile in proc_list if '_contact_events.mat' not in matfile]
-
+        
     # Iterate over each file in processing list
     for file in proc_list:
-        # Load file
+        
+        # Let user know what's going on
+        f'Processing {file}...'
+
+        # Load file        
         data = scipy.io.loadmat(file)
 
         # Pre-process data
@@ -198,7 +253,7 @@ def main():
         foot_strike_hat, toe_off_hat, contact_hat = predict_events(trial_cycles, FootNet)
 
         # Write results to disk
-        data_writer(foot_strike_hat, toe_off_hat, contact_hat, side_ref, file)
+        data_writer(foot_strike_hat, toe_off_hat, contact_hat, side_ref, file, args['output'])
 
 #%% Call main
 
