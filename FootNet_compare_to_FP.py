@@ -8,9 +8,6 @@ and detect foot-strike and toe-off. The example file also contains the original
 label vectors generated using the onset and offset of the vGRF. A graph is produced
 to visualise the comparison between both methods.
 
-Usage
-
-The script was created to be used in your IDE of choiceYou need 
 
 Created on Wed Dec  9 13:51:54 2020
 
