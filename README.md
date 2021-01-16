@@ -20,7 +20,7 @@ These instructions will get a copy of the project up and running on your local m
    git clone https://github.com/adrianrivadulla/FootNet.git
    cd FootNet
    ```
--  Create models and output directories and download [model:](https://drive.google.com/uc?export=download&id=18y8RhQTH3d1Nqp-CWiM415suUZxqjj-9) (this only works manually by clicking on the link for now)
+-  Create models and output directories and download [model:](https://drive.google.com/uc?export=download&id=1krcpLyBufTi3TZf7CsZ6t_bqCxlL50lJ) (this only works manually by clicking on the link for now)
 
     ```Shell
     mkdir models
