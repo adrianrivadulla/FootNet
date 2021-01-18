@@ -217,7 +217,7 @@ def main():
     ap.add_argument("-sf", "--samplingfreq", required=True, type=float,
                     default=0, help="motion capture sampling frquency")
     ap.add_argument("-m,", "--model", type=str,
-                    default="./models/FootNetFinalModel",
+                    default="./models/FootNet_v1",
                     help="path to tf model")
     ap.add_argument("-o", "--output", type=str,
                     default="write_me",
