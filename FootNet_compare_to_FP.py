@@ -14,6 +14,11 @@ Created on Wed Dec  9 13:51:54 2020
 @author: arr43
 """
 
+# Add FootNet to  system paths and import FootNet_inference as a module
+my_own_path = __file__
+rootdir = os.path.dirname(my_own_path)
+sys.path.append(rootdir)
+
 # Make imports
 import os
 import sys
@@ -21,11 +26,6 @@ from scipy.io import loadmat
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
-
-# Add FootNet to  system paths and import FootNet_inference as a module
-my_own_path = __file__
-rootdir = os.path.dirname(my_own_path)
-sys.path.append(rootdir)
 import FootNet_inference
 
 # Load data
