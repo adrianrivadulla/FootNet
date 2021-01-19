@@ -20,17 +20,13 @@ These instructions will get a copy of the project up and running on your local m
    git clone https://github.com/adrianrivadulla/FootNet.git
    cd FootNet
    ```
--  Create models and output directories and download [model:](https://drive.google.com/uc?export=download&id=1krcpLyBufTi3TZf7CsZ6t_bqCxlL50lJ) (this only works manually by clicking on the link for now)
+-  Create output directory where ouput data will be saved for the demo:
 
     ```Shell
-    mkdir models
     mkdir output
-    cd models
-    command to download model
-    cd ..
     ```
 
-This same process can be replicated manually by downloading and unzipping this repository, creating the "models" and "output" folders in FootNet and downloading the model into the models folder.
+This same process can be replicated manually by downloading and unzipping this repository, creating the "output" folder in FootNet.
 
 - Set up the environment using one of the following methods:
 
@@ -51,15 +47,15 @@ This same process can be replicated manually by downloading and unzipping this r
 
 ### Usage
 
-Ensure that the model is downloaded into ```FootNet/models/``` and that data files are stored in ```FootNet/data/```. All files in this directory will be processed. Results are saved by default to the same folder with the same file name and the extension _contact_events.mat.
-
-To run, navigate to the FootNet directory and use:
+FootNet_v1 is deployed in [FootNet_inference.py](https://github.com/adrianrivadulla/FootNet/blob/main/FootNet_inference.py), navigate to the FootNet directory and use:
 
 ```Shell
     python FootNet_inference.py --samplingfreq 200 --output path/to/outputdirectory
 ```
 
 FootNet_inference takes the sampling frequency to calculate linear velocities as required input and three optional inputs: the directory where data can be found or a path to a specific file, the model directory and the output directory where files should be saved. These are set by default to ./data/, ./models/ and ./data/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in your own data.
+
+An example where you can compare the results of FootNet against force plates is also provided in [FootNet_compare_to_FP.py](https://github.com/adrianrivadulla/FootNet/blob/main/FotNet_compare_to_FP.py).
 
 ## License
 
