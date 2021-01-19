@@ -55,7 +55,7 @@ FootNet_v1 is deployed in [FootNet_inference.py](https://github.com/adrianrivadu
 
 FootNet_inference takes the sampling frequency to calculate linear velocities as required input and three optional inputs: the directory where data can be found or a path to a specific file, the model directory and the output directory where files should be saved. These are set by default to ./data/, ./models/ and ./data/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in your own data.
 
-An example where you can compare the results of FootNet against force plates is also provided in [FootNet_compare_to_FP.py](https://github.com/adrianrivadulla/FootNet/blob/main/FotNet_compare_to_FP.py).
+An example where you can compare the results of FootNet against force plates is also provided in [FootNet_compare_to_FP.py](https://github.com/adrianrivadulla/FootNet/blob/main/FootNet_compare_to_FP.py).
 
 ## License
 
