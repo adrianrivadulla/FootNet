@@ -22,23 +22,23 @@ These instructions will get a copy of the project up and running on your local m
    cd FootNet
    ```
 
--  Create output directory where ouput data will be saved for the demo:
+- Create output directory where ouput data will be saved for the demo:
 
-    ```Shell
-    mkdir output
-    ```
+```Shell
+mkdir output
+```
 
 This same process can be replicated manually by downloading and unzipping this repository, creating the "output" folder in FootNet.
 
 - Set up the environment using one of the following methods:
 
-    - Using [Anaconda:](https://www.anaconda.com/distribution/)
+- Using [Anaconda:](https://www.anaconda.com/distribution/)
 
      ```Shell
      conda env create -f environment.yml
      ```
 
-    - Using [pip](https://pip.pypa.io/en/stable/installing/) on Windows:
+- Using [pip](https://pip.pypa.io/en/stable/installing/) on Windows:
 
     ```Shell
     python -m venv --system-site-packages .\venv
@@ -47,7 +47,7 @@ This same process can be replicated manually by downloading and unzipping this r
     pip install -r requirements.txt
     ```
 
-    - Using [pip](https://pip.pypa.io/en/stable/installing/) on Ubuntu/macOS:
+- Using [pip](https://pip.pypa.io/en/stable/installing/) on Ubuntu/macOS:
 
     ```Shell
     python3 -m venv --system-site-packages ./venv
@@ -56,9 +56,9 @@ This same process can be replicated manually by downloading and unzipping this r
     pip install -r requirements.txt
     ```
 
-    - Finally, verify the tensorflow install:
+- Finally, verify the tensorflow install:
 
-    ```Shell 
+    ```Shell
     python -c "import tensorflow as tf;print(tf.reduce_sum(tf.random normal([1000, 1000])))"
     ```
 
@@ -68,44 +68,24 @@ This same process can be replicated manually by downloading and unzipping this r
 
 FootNet_v1 is deployed in [FootNet_inference.py](https://github.com/adrianrivadulla/FootNet/blob/main/FootNet_inference.py), navigate to the FootNet directory and use:
 
-- Using default args on Windows:
+- Using default args:
 
 ```Shell
     python FootNet_inference.py 
 ```
 
-- To view all args on Windows:
+- To view all args:
 
 ```Shell
     python FootNet_inference.py --help
-```
-
-- Using default args on Ubuntu/macOS:
-
-```Shell
-    python3 FootNet_inference.py
-```
-
-- To view all args on Ubuntu/macOS:
-
-```Shell
-    python3 FootNet_inference.py --help
 ```
 
 See docstring in [FootNet_inference.py](./FootNet_inference.py) for detailed information on each input argument and output argument.
 
 A futher [example](./FootNet_compare_to_FP.py) is provided to demonstrate the results of FootNet against force plates. To run use:
 
-- On Windows:
-
 ```Shell
     python FootNet_compare_to_FP.py
-```
-
-- On Ubuntu/macOS:
-
-```Shell
-    python3 FootNet_compare_to_FP.py
 ```
 
 ## License
