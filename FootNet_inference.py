@@ -30,9 +30,7 @@ is the number os strides in the file.
 
 INPUT
 
---samplingfreq flag - Required. Set to 0 by default so it crashes 
-                        and users make sure they input it.
-
+--samplingfreq flag - Optional. Default = 200 Hz
 
 --datapath flag - Optional. Path to directory .mat files. This should either be
                     a path to the directory or the path to a single file. Defaults
@@ -190,7 +188,7 @@ def data_writer(foot_strike_hat, toe_off_hat, contact_hat, sideref, inputfilenam
     elif outputdir == 'write_me':
         # write full path to inputfiledir
         outputfilename = os.path.splitext(inputfilename)[0]
-        outputfilename += '_contact_events.mat'    
+        outputfilename += '_contact_events.mat'
         
     # Reshape contact_hat and store them in a dict
     predictions = {}
@@ -213,15 +211,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-p,", "--datapath", type=str,
                     default="./data",
-                    help="path to kinematic data directory")
+                    help="path to kinematic data directory. default=./data")
     ap.add_argument("-sf", "--samplingfreq", required=True, type=float,
-                    default=0, help="motion capture sampling frquency")
+                    default=200, help="motion capture sampling frequency. default=200")
     ap.add_argument("-m,", "--model", type=str,
                     default="./models/FootNet_v1",
-                    help="path to tf model")
+                    help="path to tf model. default=./models/FootNet_v1")
     ap.add_argument("-o", "--output", type=str,
                     default="write_me",
-                    help="path to output directory")
+                    help="path to output directory. default=write_me")
     args = vars(ap.parse_args())
 
     # Load model
