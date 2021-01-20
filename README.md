@@ -11,6 +11,7 @@ These instructions will get a copy of the project up and running on your local m
 ### Pre-requisites
 
 - Python 3.7
+- venv >= 19.0
 
 ### Installing
 
@@ -20,6 +21,7 @@ These instructions will get a copy of the project up and running on your local m
    git clone https://github.com/adrianrivadulla/FootNet.git
    cd FootNet
    ```
+
 -  Create output directory where ouput data will be saved for the demo:
 
     ```Shell
@@ -36,26 +38,75 @@ This same process can be replicated manually by downloading and unzipping this r
      conda env create -f environment.yml
      ```
 
-    - Using [pip:](https://pip.pypa.io/en/stable/installing/)
+    - Using [pip](https://pip.pypa.io/en/stable/installing/) on Windows:
 
     ```Shell
-    pip install venv
-    python -m virtualenv env
-    source venv/bin/activate
+    python -m venv --system-site-packages .\venv
+    .\venv\Scripts\activate
+    pip install --upgrade pip
     pip install -r requirements.txt
     ```
+
+    - Using [pip](https://pip.pypa.io/en/stable/installing/) on Ubuntu/macOS:
+
+    ```Shell
+    python3 -m venv --system-site-packages ./venv
+    source ./venv/bin/activate  # sh, bash, or zsh
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    ```
+
+    - Finally, verify the tensorflow install:
+
+    ```Shell 
+    python -c "import tensorflow as tf;print(tf.reduce_sum(tf.random normal([1000, 1000])))"
+    ```
+
+    If a tensor is returned, you've installed TensorFlow successfully. If an error is returned see [tensorflow website](https://www.tensorflow.org/install/).
 
 ### Usage
 
 FootNet_v1 is deployed in [FootNet_inference.py](https://github.com/adrianrivadulla/FootNet/blob/main/FootNet_inference.py), navigate to the FootNet directory and use:
 
+- Using default args on Windows:
+
 ```Shell
-    python FootNet_inference.py --samplingfreq 200 --output path/to/outputdirectory
+    python FootNet_inference.py 
 ```
 
-FootNet_inference takes the sampling frequency to calculate linear velocities as required input and three optional inputs: the directory where data can be found or a path to a specific file, the model directory and the output directory where files should be saved. These are set by default to ./data/, ./models/ and ./data/ respectively so they are not needed for demonstration purposes but something to bear in mind when implementing the method in your own data.
+- To view all args on Windows:
 
-An example where you can compare the results of FootNet against force plates is also provided in [FootNet_compare_to_FP.py](https://github.com/adrianrivadulla/FootNet/blob/main/FootNet_compare_to_FP.py).
+```Shell
+    python FootNet_inference.py --help
+```
+
+- Using default args on Ubuntu/macOS:
+
+```Shell
+    python3 FootNet_inference.py
+```
+
+- To view all args on Ubuntu/macOS:
+
+```Shell
+    python3 FootNet_inference.py --help
+```
+
+See docstring in [FootNet_inference.py](./FootNet_inference.py) for detailed information on each input argument and output argument.
+
+A futher [example](./FootNet_compare_to_FP.py) is provided to demonstrate the results of FootNet against force plates. To run use:
+
+- On Windows:
+
+```Shell
+    python FootNet_compare_to_FP.py
+```
+
+- On Ubuntu/macOS:
+
+```Shell
+    python3 FootNet_compare_to_FP.py
+```
 
 ## License
 
@@ -81,7 +132,7 @@ If you use FootNet or this code base in your work, please cite
 ```
 # FootNet development replication
 
-FootNet development can be replicated on Google Colab. More details on FootNet cross-validation and model testing, how to download the data and run the notebooks can be found in the [notebooks folder](https://github.com/adrianrivadulla/FootNet/blob/main/notebooks).
+FootNet development can be replicated on Google Colab. More details on FootNet cross-validation and model testing, how to download the data and run the notebooks can be found in the [notebooks folder](./notebooks).
 
 # Contact
 For questions about our paper or code, please contact [Adrian R](mailto:arr43@bath.ac.uk).
