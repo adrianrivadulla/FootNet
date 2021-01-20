@@ -14,12 +14,6 @@ Created on Wed Dec  9 13:51:54 2020
 @author: arr43
 """
 
-# Add FootNet to  system paths and import FootNet_inference as a module
-my_own_path = __file__
-rootdir = os.path.dirname(my_own_path)
-sys.path.append(rootdir)
-
-# Make imports
 import os
 import sys
 from scipy.io import loadmat
@@ -29,17 +23,18 @@ import tensorflow as tf
 import FootNet_inference
 
 # Load data
-datapath = os.path.join(rootdir, 'data', 'Data_example.mat')
-data = loadmat(datapath)                                                   
+path = "./data/Data_example.mat"
+data = loadmat(path)
 
 # Load model
-modelpath = os.path.join(rootdir, 'models', 'FootNet_v1')
-FootNet = tf.keras.models.load_model(modelpath)
+print("[INFO] - Loading tf model...")
+FootNet = tf.keras.models.load_model("./models/FootNet_v1")
 
 # Pre-process data
 trial_cycles, side_ref = FootNet_inference.pre_processor(data, 200)
 
 # Predict ground contact events
+print(f"[INFO] - Processing Example Data: {path}")
 foot_strike_hat, toe_off_hat, contact_hat = FootNet_inference.predict_events(trial_cycles, FootNet)
 
 # Find foot-strike and toe-off in the labels generated using the vGRF data
@@ -63,38 +58,39 @@ toe_off_error = np.asarray(toe_off_true) - np.asarray(toe_off_hat)
 plt.figure()
 
 # Subplot 1. histogram of foot strike error
-    
+
 plt.subplot(3,1,1)
 labels, counts = np.unique(foot_strike_error, return_counts=True)
 plt.bar(labels, counts, align='center')
 plt.xticks(np.linspace(-5,5,11))
-plt.title('Foot strike error')
+plt.title('Foot Strike Error Distribution')
 plt.ylabel('Count')
 plt.xlabel('Error (frames)')
 
 # Subplot 2. histogram of toe off error
-    
+
 plt.subplot(3,1,2)
 labels, counts = np.unique(toe_off_error, return_counts=True)
 plt.bar(labels, counts, align='center')
 plt.xticks(np.linspace(-5,5,11))
-plt.title('Toe off error')
+plt.title('Toe Off Error Distribution')
 plt.ylabel('Count')
 plt.xlabel('Error (frames)')
-    
+
 # Subplot 3. Random case for visualisation
 sel_cycle = int(np.random.randint(low=0, high=len(trial_cycles), size=1))
 
 plt.subplot(3,1,3)
-plt.plot(Y_labels[0,sel_cycle][:].T,'g')
-plt.plot(contact_hat[sel_cycle][0,:,0],'b')
-plt.legend('Ground truth', 'Predicted')
-plt.title('Ground truth vs predicted')
+plt.plot(Y_labels[0,sel_cycle][:].T, 'g', label="Ground Truth")
+plt.plot(contact_hat[sel_cycle][0,:,0], 'b', label="Predicted")
+plt.title('Example - Ground Truth vs Predicted')
+plt.legend()
 plt.ylabel('Label')
 plt.xlabel('Timepoint')
 
 plt.tight_layout()
 
 # Save figure to output directory
-figurepath = os.path.join(rootdir, 'output', 'FootNet_vs_FP_comparison.png')
-plt.savefig(figurepath)
+plt.savefig("./output/FootNet_vs_FP_comparison.png")
+
+print("[INFO] - Complete!")
