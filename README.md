@@ -82,7 +82,7 @@ FootNet_v1 is deployed in [FootNet_inference.py](https://github.com/adrianrivadu
 
 See docstring in [FootNet_inference.py](./FootNet_inference.py) for detailed information on each input argument and output argument.
 
-A futher [example](./FootNet_compare_to_FP.py) is provided to demonstrate the results of FootNet against force plates. To run use:
+A further [example](./FootNet_compare_to_FP.py) is provided to demonstrate the results of FootNet against force plates. To run use:
 
 ```Shell
     python FootNet_compare_to_FP.py
@@ -100,7 +100,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 
 # Citation
-If you use FootNet or this code base in your work, please cite
+If you use FootNet or this code base in your work, please cite:
 
 ```
 @inproceedings{FootNet...,
