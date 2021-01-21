@@ -32,9 +32,10 @@ This same process can be replicated manually by downloading and unzipping this r
 
 - Set up the environment using one of the following methods:
 
-- Using [Anaconda](https://www.anaconda.com/distribution/), navigate to the newly created FootNet directory and create a version environment with the environment.yml file provided:
+- Using [Anaconda](https://www.anaconda.com/distribution/), navigate to the FootNet directory and create a version environment with the environment.yml file provided:
 
      ```Shell
+     cd /path/to/FootNet
      conda env create -f environment.yml
      ```
 
