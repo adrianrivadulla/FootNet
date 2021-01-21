@@ -11,7 +11,7 @@ These instructions will get a copy of the project up and running on your local m
 ### Pre-requisites
 
 - Python 3.7
-- venv >= 19.0
+- venv >= 19.0 (if using pip)
 
 ### Installing
 
@@ -28,11 +28,11 @@ These instructions will get a copy of the project up and running on your local m
 mkdir output
 ```
 
-This same process can be replicated manually by downloading and unzipping this repository, creating the "output" folder in FootNet.
+This same process can be replicated manually by downloading and unzipping this repository, then creating the "output" folder in FootNet.
 
 - Set up the environment using one of the following methods:
 
-- Using [Anaconda:](https://www.anaconda.com/distribution/)
+- Using [Anaconda](https://www.anaconda.com/distribution/), navigate to the newly created FootNet directory and create a version environment with the environment.yml file provided:
 
      ```Shell
      conda env create -f environment.yml
