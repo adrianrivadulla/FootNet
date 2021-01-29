@@ -89,6 +89,11 @@ A further [example](./FootNet_compare_to_FP.py) is provided to demonstrate the r
     python FootNet_compare_to_FP.py
 ```
 
+#### Matlab workaround through batch file (Windows OS)
+
+Although Matlab has a new function called importKerasNetwork, as of January 2021, this function does not work as one would expect. A workaround to use FootNet through Matlab is included in the [CMD-Matlab folder](./CMD-Matlab).
+
+
 ## License
 
 Copyright (c) 2021 Adrian R Rivadulla
@@ -114,10 +119,6 @@ If you use FootNet or this code base in your work, please cite:
 # FootNet Training Replication
 
 FootNet training can be replicated on Google Colab. More details on FootNet cross-validation and model testing, how to download the data and run the notebooks can be found in the [notebooks folder](./notebooks).
-
-# Matlab workaround through batch file (Windows OS)
-
-Although Matlab has a new function called importKerasNetwork, as of January 2021, this function does not work as one would expect. A workaround to use FootNet through Matlab is included in the [CMD-Matlab folder](./CMD-Matlab).
 
 # Contact
 For questions about our paper or code, please contact [Adrian R](mailto:arr43@bath.ac.uk).
