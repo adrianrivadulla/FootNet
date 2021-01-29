@@ -115,5 +115,9 @@ If you use FootNet or this code base in your work, please cite:
 
 FootNet training can be replicated on Google Colab. More details on FootNet cross-validation and model testing, how to download the data and run the notebooks can be found in the [notebooks folder](./notebooks).
 
+# Matlab workaround through batch (Windows OS)
+
+Although Matlab has a new function called importKerasNetwork, as of January 2021, this function does not work as one would expect. Most of my PhD processing was written in Matlab (using Windows OS) so I found a workaround through a batch file (.bat) that you can call from Matlab.
+
 # Contact
 For questions about our paper or code, please contact [Adrian R](mailto:arr43@bath.ac.uk).
