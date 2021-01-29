@@ -117,9 +117,7 @@ FootNet training can be replicated on Google Colab. More details on FootNet cros
 
 # Matlab workaround through batch file (Windows OS)
 
-Although Matlab has a new function called importKerasNetwork, as of January 2021, this function does not work as one would expect. A workaround to use FootNet through Matlab is included in the [CMD-Matlab folder](./CMD-Matlab) Most of my PhD processing was written in Matlab (using Windows OS) so I had to find a workaround to integrate FootNet in my Matlab data processing scripts. This can be achieved by using [FootNet_call_CMD.bat](./FootNet_call_CMD.bat). This batch file executes FootNet_infernece.py through the command prompt, that can be used through Matlab.
-
-
+Although Matlab has a new function called importKerasNetwork, as of January 2021, this function does not work as one would expect. A workaround to use FootNet through Matlab is included in the [CMD-Matlab folder](./CMD-Matlab).
 
 # Contact
 For questions about our paper or code, please contact [Adrian R](mailto:arr43@bath.ac.uk).
