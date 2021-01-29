@@ -1,4 +1,4 @@
-Most of my PhD data processing scripts were written in Matlab (using Windows OS) so I had to find a workaround to integrate FootNet. This can be achieved by using [FootNet_call_CMD.bat](./FootNet_call_CMD.bat). This batch file executes FootNet_infernece.py through the command prompt, and can be called through Matlab.
+Most of my PhD data processing scripts were written in Matlab (using Windows OS) so I had to find a workaround to integrate FootNet. This can be achieved by using [FootNet_call_CMD.bat](./FootNet_call_CMD.bat). This batch file executes FootNet_inference.py through the command prompt, and can be called through Matlab.
 
 ## Requirements
 
