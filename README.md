@@ -69,10 +69,10 @@ This same process can be replicated manually by downloading and unzipping this r
 
 FootNet_v1 is deployed in [FootNet_inference.py](https://github.com/adrianrivadulla/FootNet/blob/main/FootNet_inference.py), navigate to the FootNet directory and use:
 
-- Using default args:
+- Using default args (note that sampling frequency -sf must be added):
 
 ```Shell
-    python FootNet_inference.py 
+    python FootNet_inference.py -sf 200
 ```
 
 - To view all args:
