@@ -30,7 +30,9 @@ is the number os strides in the file.
 
 INPUT
 
---samplingfreq flag - Optional. Default = 200 Hz
+--samplingfreq flag - Required. Set to 0 by default so it crashes 
+                        and users make sure they input it.
+
 
 --datapath flag - Optional. Path to directory .mat files. This should either be
                     a path to the directory or the path to a single file. Defaults
@@ -177,24 +179,33 @@ def data_writer(foot_strike_hat, toe_off_hat, contact_hat, sideref, inputfilenam
     Writes out foot_strike_hat, toe_off_hat, contact_hat and sideref as a .mat
     file with inputfilename without extension as filename, adding _contact_events
     """
-
-    # generate save path
-    file_name = os.path.basename(inputfilename).replace(".mat", "_contact_events.mat")
-    save_path = os.path.join(outputdir, file_name) 
+    # Check outputdir provided
+    if os.path.isdir(outputdir):
+        # write full path to file in outputdir
+        outputfilename = os.path.basename(inputfilename)
+        outputfilename = os.path.splitext(outputfilename)[0]
+        outputfilename += '_contact_events.mat'
+        outputfilename = os.path.join(outputdir, outputfilename) 
     
+    elif outputdir == 'write_me':
+        # write full path to inputfiledir
+        outputfilename = os.path.splitext(inputfilename)[0]
+        outputfilename += '_contact_events.mat'    
+        
     # Reshape contact_hat and store them in a dict
     predictions = {}
     for stride in range(len(contact_hat)):
         predictions[sideref[stride]+str(stride)] = np.reshape(contact_hat[stride],(max(np.shape(contact_hat[stride])),1))
     
     # Write dict containing the desired output
-    output = {'predictions': predictions,
-                    'fs': foot_strike_hat,
-                    'to': toe_off_hat,
-                    'sideref': sideref}
+    outputdic = {}
+    outputdic['predictions'] = predictions
+    outputdic['fs'] = foot_strike_hat
+    outputdic['to'] = toe_off_hat
+    outputdic['sideref'] = sideref
 
     # Save it as .mat file
-    scipy.io.savemat(save_path, output)
+    scipy.io.savemat(outputfilename, outputdic)
 
 def main():
 
@@ -202,19 +213,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-p,", "--datapath", type=str,
                     default="./data",
-                    help="path to kinematic data directory. default=./data")
-    ap.add_argument("-sf", "--samplingfreq", required=False, type=float,
-                    default=200, help="motion capture sampling frequency. default=200")
+                    help="path to kinematic data directory")
+    ap.add_argument("-sf", "--samplingfreq", required=True, type=float,
+                    default=0, help="motion capture sampling frquency")
     ap.add_argument("-m,", "--model", type=str,
                     default="./models/FootNet_v1",
-                    help="path to tf model. default=./models/FootNet_v1")
+                    help="path to tf model")
     ap.add_argument("-o", "--output", type=str,
-                    default="./output",
-                    help="path to output directory. default=write_me")
+                    default="write_me",
+                    help="path to output directory")
     args = vars(ap.parse_args())
 
     # Load model
-    print("[INFO] - Loading tf model...")
     FootNet = tf.keras.models.load_model(args['model'])
 
     # Check if datapath is single file or directory.
@@ -229,10 +239,11 @@ def main():
         
     # Iterate over each file in processing list
     for file in proc_list:
+        
+        # Let user know what's going on
+        f'Processing {file}...'
 
-        print(f"[INFO] - Processing: {file}")
-
-        # Load file
+        # Load file        
         data = scipy.io.loadmat(file)
 
         # Pre-process data
@@ -243,8 +254,6 @@ def main():
 
         # Write results to disk
         data_writer(foot_strike_hat, toe_off_hat, contact_hat, side_ref, file, args['output'])
-        f = os.path.basename(file)
-        print(f"[INFO] - Saved Result: {args['output']}/{f}")
 
 #%% Call main
 
