@@ -1,6 +1,6 @@
 # FootNet development
 
-FootNet cross-validation and testing can be replicated on Google Colab (see figure). You will need to download the processed datasets and Colab notebooks from [here](https://researchdata.bath.ac.uk/965/). You will then need to upload the unzipped folder to your Google Drive in order to use it in Google Colab.
+FootNet cross-validation and testing can be replicated on Google Colab (see figure). You will need to download the processed datasets and Colab notebooks from [here](https://researchdata.bath.ac.uk/965/). Then you can upload the unzipped directory to your Google Drive so you can access the data from Google Colab.
 
 ![alt text](../docs/img/data_flow.png)
 
