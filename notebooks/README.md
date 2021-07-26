@@ -1,6 +1,6 @@
 # FootNet development
 
-FootNet cross-validation and testing can be replicated on Google Colab (see figure). You will need to download the processed datasets from [here](https://drive.google.com/drive/folders/1MMpsXvz8-rDjTwwfOrp_k7zS_Om1gqLy?usp=sharing) (THIS IS A TEMPORARY SOLUTION WHILE WE DON'T DECIDE WHETHER WE GO FIGSHARE OR UNI REPO. FOR NOW, CLICK ON THE LINK, THEN ON THE TOP TAB CALLED StepDetectionStudy YOU'LL SEE A DROPDOWN ARROW, CLICK ON IT AND DOWNLOAD. THAT WILL DOWNLOAD EVERYTHING AS A ZIP FOLDER. ONCE THAT'S FINISHED, OPEN THE FOLDER IN YOUR COMPUTER AND REUPLOAD THE FOLDER StepDetectionStudy CONTAINING EVERYTHING TO MY DRIVE IN YOUR GOOGLE DRIVE) and the Google Colab notebooks to replicate the development of Footnet can be found in this repository.
+FootNet cross-validation and testing can be replicated on Google Colab (see figure). You will need to download the processed datasets and Colab notebooks from [here](https://researchdata.bath.ac.uk/965/). You will then need to upload the unzipped folder to your Google Drive in order to use it in Google Colab.
 
 ![alt text](../docs/img/data_flow.png)
 
