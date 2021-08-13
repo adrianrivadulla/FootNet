@@ -108,14 +108,9 @@ You should have received a copy of the GNU Lesser General Public License along w
 # Citation
 If you use FootNet or this code base in your work, please cite:
 
-```
-@inproceedings{FootNet...,
-  author    = {Adrian R. et al.},
-  title     = {},
-  booktitle = {},
-  year      = {},
-}
-```
+Rivadulla A, Chen X, Weir G, Cazzola D, Trewartha G, Hamill J, et al. (2021) Development and validation of FootNet; a new kinematic algorithm to improve foot-strike and toe-off detection in treadmill running. PLoS ONE 16(8): e0248608. [https://doi.org/10.1371/journal.pone.0248608](https://doi.org/10.1371/journal.pone.0248608)
+
+
 # FootNet Training Replication
 
 FootNet training can be replicated on Google Colab. More details on FootNet cross-validation and model testing, how to download the data and run the notebooks can be found in the [notebooks folder](./notebooks).
