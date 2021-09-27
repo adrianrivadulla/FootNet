@@ -2,7 +2,7 @@
 
 Motion capture running analyses are often performed on conventional (non-instrumented) treadmills. The absence of force plates can be problematic for the detection of foot strike and toe off, which are critical for the comprehensive biomechanical analysis of running kinematics. We introduce FootNet an algorithm for the detection of foot strike and toe off events on non-instrumented treadmills using segment and joint kinematics as input. The algorithm is based on an LSTM neural network architecture that has been trained, validated and tested using five datasets collected in three independent motion capture labs.
 
-The publication associated with this study can be found [here](link2pub) (not available yet).
+The publication associated with this study can be found [here](https://doi.org/10.1371/journal.pone.0248608).
 
 ## Getting Started
 
