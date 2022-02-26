@@ -19,7 +19,7 @@ The project directory StepDetectionStudy is organised as follows:
       - Results. Folder containing the summary performance metrics for each model on its corresponding validation set and Bland-Altman plots comparing foot strike, toe off and contact times as predicted by FootNet vs gold standard method.
     - FinalTest
       - FootNet_best_candidate. Best set of parameters resulting from cross validation.
-      - Summary performance metrics on testing set and Bland-Altman plots comparing foot strike, toe off and ocntact times as predicted by FootNet vs gold standard method.
+      - Summary performance metrics on testing set and Bland-Altman plots comparing foot strike, toe off and contact times as predicted by FootNet vs gold standard method.
       - y_and_yhat.mat File containing testing predictions, target labels and metadata from testing stride cycles for posterior analyses in Matlab presented in the paper.
     - FinalModel. Folder containing the final updated model resulting from FinalTest as a SavedModel directory (Tensorflow model format) and as .h5.
 
