@@ -157,20 +157,31 @@ def predict_events(input_cycles, model_obj):
     foot_strike = []
     toe_off = []
     
-    for cycle in input_cycles:
-    
-        # Standardise data
-        stdised_cycle = (cycle - zero_mean) / one_std
+    for cyclei, cycle in enumerate(input_cycles):
+                
+        try:
         
-        # Predict contact phase and find onset and offset
-        y_hat = model_obj.predict(stdised_cycle)
-        onset = np.where(y_hat[0,:,0] >= 0.5)[0][0]
-        offset = np.where(y_hat[0,onset:,0] < 0.5)[0][0] - 1 + onset
+            # Standardise data
+            stdised_cycle = (cycle - zero_mean) / one_std
         
-        # Append to vars
-        contact.append(y_hat)
-        foot_strike.append(onset)
-        toe_off.append(offset)
+            # Predict contact phase and find onset and offset
+            y_hat = model_obj.predict(stdised_cycle)
+            onset = np.where(y_hat[0,:,0] >= 0.5)[0][0]
+            offset = np.where(y_hat[0,onset:,0] < 0.5)[0][0] + onset
+        
+            # Append to vars
+            contact.append(y_hat)
+            foot_strike.append(onset)
+            toe_off.append(offset)
+
+        except:
+
+            print('Contact events could not be found for cycle ' + str(cyclei))
+            
+            # Append NaN vars
+            contact.append(y_hat)
+            foot_strike.append(float('nan'))
+            toe_off.append(float('nan'))
 
     return foot_strike, toe_off, contact
 
